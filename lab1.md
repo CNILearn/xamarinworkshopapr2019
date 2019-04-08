@@ -3,7 +3,7 @@
 1. Create a Xamarin.Android Project
 2. Add a button to the form
 3. Add a event handler to show a toast on click of the button
-4. Run teh application using an emulator
+4. Run the application using an emulator
 
 ## Show a List
 
