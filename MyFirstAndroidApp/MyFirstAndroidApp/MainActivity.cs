@@ -30,6 +30,12 @@ namespace MyFirstAndroidApp
             {
                 Toast.MakeText(ApplicationContext, Resource.String.hello, ToastLength.Long).Show();
             };
+
+            Button showBooks = FindViewById<Button>(Resource.Id.buttonshowlist);
+            showBooks.Click += (sender, e) =>
+            {
+                StartActivity(typeof(BooksListActivity));
+            };
         }
 
 
