@@ -24,9 +24,14 @@ namespace MyFirstAndroidApp
 
             FloatingActionButton fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
             fab.Click += FabOnClick;
+
+            Button button1 = FindViewById<Button>(Resource.Id.button1);
+            button1.Click += (sender, e) =>
+            {
+                Toast.MakeText(ApplicationContext, Resource.String.hello, ToastLength.Long).Show();
+            };
         }
 
-        
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
