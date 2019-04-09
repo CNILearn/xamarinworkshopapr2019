@@ -33,11 +33,8 @@ namespace MyFirstAndroidApp
 
             Button showBooks = FindViewById<Button>(Resource.Id.buttonshowlist);
             showBooks.Click += (sender, e) =>
-            {
                 StartActivity(typeof(BooksListActivity));
-            };
         }
-
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
