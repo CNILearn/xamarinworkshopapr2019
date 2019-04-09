@@ -21,6 +21,6 @@
 
         public string[] Authors { get; set; }
 
-        public override string ToString() => Title;
+       //  public override string ToString() => Title;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using BooksServices;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -15,12 +16,12 @@ namespace XamarinFormsBooksSample
     public partial class MainPage : ContentPage
     {
         // private Book _theBook = new Book { BookId = 1, Title = "Beginning C#", Publisher = "Wrox", Authors = new[] { "Karli Watson", "Christian Nagel" } };
-        private List<Book> _books;        
+        private ObservableCollection<Book> _books;        
         public MainPage()
         {
             InitializeComponent();
 
-            _books = new List<Book>(new BookFactory().GetBooks());
+            _books = new ObservableCollection<Book>(new BookFactory().GetBooks());
             SelectedBook = _books.FirstOrDefault();
             this.BindingContext = this;
         }
@@ -62,16 +63,10 @@ namespace XamarinFormsBooksSample
             //}
         }
 
-        //public string Title1 { get; set; }
-
-        //private string _myInput;
-
-        //public string MyInput
-        //{
-        //    get { return _myInput; }
-        //    set { _myInput = value; }
-        //}
-
+        private void OnAddBook(object sender, EventArgs e)
+        {
+            _books.Add(new Book { BookId = 5, Title = "Professional C# 9", Publisher = "Wrox", Authors = new[] { "Christian Nagel" } });
+        }
 
     }
 }
