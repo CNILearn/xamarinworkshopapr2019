@@ -19,6 +19,8 @@
             set => SetProperty(ref _publisher, value);
         }
 
+        public string[] Authors { get; set; }
+
         public override string ToString() => Title;
     }
 }

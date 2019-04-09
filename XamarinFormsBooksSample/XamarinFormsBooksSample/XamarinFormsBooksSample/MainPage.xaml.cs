@@ -14,7 +14,7 @@ namespace XamarinFormsBooksSample
     [DesignTimeVisible(true)]
     public partial class MainPage : ContentPage
     {
-        private Book _theBook = new Book { BookId = 1, Title = "Professional C#", Publisher = "Wrox" };
+        private Book _theBook = new Book { BookId = 1, Title = "Beginning C#", Publisher = "Wrox", Authors = new[] { "Karli Watson", "Christian Nagel" } };
         public MainPage()
         {
             InitializeComponent();
