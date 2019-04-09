@@ -14,23 +14,52 @@ namespace XamarinFormsBooksSample
     [DesignTimeVisible(true)]
     public partial class MainPage : ContentPage
     {
-        private Book _theBook = new Book { BookId = 1, Title = "Beginning C#", Publisher = "Wrox", Authors = new[] { "Karli Watson", "Christian Nagel" } };
+        // private Book _theBook = new Book { BookId = 1, Title = "Beginning C#", Publisher = "Wrox", Authors = new[] { "Karli Watson", "Christian Nagel" } };
+        private List<Book> _books;        
         public MainPage()
         {
             InitializeComponent();
-            //Title1 = "some title";
-            //MyInput = string.Empty;
-            this.BindingContext = _theBook;
+
+            _books = new List<Book>(new BookFactory().GetBooks());
+            SelectedBook = _books.FirstOrDefault();
+            this.BindingContext = this;
         }
 
-        private void OnShowTitle(object sender, EventArgs e)
+        public IList<Book> Books => _books;
+
+        private Book _selectedBook;
+
+        public Book SelectedBook
         {
-            bookTitle.Text = _theBook.Title;
+            get => _selectedBook;
+            set
+            {
+                if (value != null)
+                {
+                    _selectedBook = value;
+
+                    base.OnPropertyChanged();
+                }
+            }
+        }
+
+
+        private void OnShowTitle(object sender, EventArgs e)
+        { 
+
         }
 
         private void OnChangeTitleFromCode(object sender, EventArgs e)
         {
-            _theBook.Title = "Professional C# 8";
+            // _theBook.Title = "Professional C# 8";
+        }
+
+        private void OnBookSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            //if (e.SelectedItem is Book book)
+            //{
+            //    SelectedBook = book;
+            //}
         }
 
         //public string Title1 { get; set; }

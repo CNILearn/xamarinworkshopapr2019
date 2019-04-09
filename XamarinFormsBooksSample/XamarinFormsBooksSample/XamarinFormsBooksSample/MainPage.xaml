@@ -9,14 +9,18 @@
     <ContentPage.Resources>
         <conv:StringArrayToStringConverter x:Key="MyStringConverter" />
     </ContentPage.Resources>
-
-    <StackLayout>
-        <Label Text="{Binding Title, Mode=OneWay}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" FontSize="Large" />
-        <Label Text="{Binding Publisher, Mode=OneWay}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" FontSize="Medium" />
-        <Label Text="{Binding Authors, Mode=OneWay, Converter={StaticResource MyStringConverter}, ConverterParameter=', '}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium" />
-        <Entry Text="{Binding Title, Mode=TwoWay}" />
-        <Button Clicked="OnChangeTitleFromCode" Text="Change Title from Code" />
-        <Button Text="Show Title" Clicked="OnShowTitle" />
+    <StackLayout Orientation="Horizontal">
+        <StackLayout>
+            <ListView ItemsSource="{Binding Books, Mode=OneWay}" SelectionMode="Single" SelectedItem="{Binding SelectedBook, Mode=TwoWay}" />
+        </StackLayout>
+        
+        <StackLayout>
+            <Label Text="{Binding SelectedBook.Title, Mode=OneWay}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" FontSize="Large" />
+            <Label Text="{Binding SelectedBook.Publisher, Mode=OneWay}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" FontSize="Medium" />
+            <Label Text="{Binding SelectedBook.Authors, Mode=OneWay, Converter={StaticResource MyStringConverter}, ConverterParameter=', '}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium" />
+            <Entry Text="{Binding SelectedBook.Title, Mode=TwoWay}" />
+            <Button Clicked="OnChangeTitleFromCode" Text="Change Title from Code" />
+            <Button Text="Show Title" Clicked="OnShowTitle" />
+        </StackLayout>
     </StackLayout>
-
 </ContentPage>
