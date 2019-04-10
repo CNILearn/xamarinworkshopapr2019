@@ -47,6 +47,9 @@
             <Entry Text="{Binding SelectedBook.Title, Mode=TwoWay}" />
             <Button Clicked="OnChangeTitleFromCode" Text="Change Title from Code" />
             <Button Text="Show Title" Clicked="OnShowTitle" />
+
+            <Entry x:Name="input2" />
+            <Label Text="{Binding Text, Source={x:Reference input2}}" />
         </StackLayout>
     </StackLayout>
 </ContentPage>
