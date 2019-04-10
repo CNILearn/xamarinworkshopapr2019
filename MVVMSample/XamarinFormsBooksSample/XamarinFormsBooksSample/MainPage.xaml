@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=netstandard"
+             xmlns:conv="clr-namespace:XamarinFormsBooksSample.Converters"
+             xmlns:ex="clr-namespace:XamarinFormsBooksSample.Extensions"
+             xmlns:local="clr-namespace:XamarinFormsBooksSample"
+             xmlns:books="clr-namespace:BooksServices;assembly=BooksServices"
+             x:DataType="{x:Type local:MainPage}"
+             x:Class="XamarinFormsBooksSample.MainPage">
+    <ContentPage.Resources>
+        <conv:StringArrayToStringConverter x:Key="MyStringConverter" />
+        <DataTemplate x:Key="WroxTemplate">
+            <ViewCell>
+                <StackLayout>
+                    <Label Text="{Binding Title, Mode=OneWay}" />
+                    <Label Text="{Binding Publisher, Mode=OneWay}" />
+                </StackLayout>
+            </ViewCell>
+        </DataTemplate>
+        <DataTemplate x:Key="DefaultTemplate">
+            <ViewCell>
+                <StackLayout>
+                    <Label Text="{Binding Title, Mode=OneWay}" />
+                </StackLayout>
+            </ViewCell>
+        </DataTemplate>
+        <ex:BookDataTemplateSelector x:Key="BookTemplateSelector"
+                                     DefaultTemplate="{StaticResource DefaultTemplate}"
+                                     WroxTemplate="{StaticResource WroxTemplate}" />
+    </ContentPage.Resources>
+    <StackLayout Orientation="Horizontal">
+        <StackLayout>
+            <ListView ItemsSource="{Binding Books, Mode=OneWay}" 
+                      SelectionMode="Single" 
+                      SelectedItem="{Binding SelectedBook, Mode=TwoWay}"
+                      ItemTemplate="{StaticResource BookTemplateSelector}">
+
+            </ListView>
+            <Button Text="Add Book" Clicked="OnAddBook" />
+        </StackLayout>
+        
+        <StackLayout>
+            <Label Text="{Binding SelectedBook.Title, Mode=OneWay}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" FontSize="Large" />
+            <Label Text="{Binding SelectedBook.Publisher, Mode=OneWay}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" FontSize="Medium" />
+            <Label Text="{Binding SelectedBook.Authors, Mode=OneWay, Converter={StaticResource MyStringConverter}, ConverterParameter=', '}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium" />
+            <Entry Text="{Binding SelectedBook.Title, Mode=TwoWay}" />
+            <Button Clicked="OnChangeTitleFromCode" Text="Change Title from Code" />
+            <Button Text="Show Title" Clicked="OnShowTitle" />
+
+            <Entry x:Name="input2" />
+            <Label Text="{Binding Text, Source={x:Reference input2}}" />
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
