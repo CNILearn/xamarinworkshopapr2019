@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BooksServices.Services
 {
-    public class BooksService
+    public class BooksService : IBooksService
     {
         private List<Book> _books = new List<Book>()
         {
@@ -15,12 +15,8 @@ namespace BooksServices.Services
             new Book { BookId = 3, Title = "Enterprise Services", Publisher = "AWL", Authors = new [] { "Christian Nagel" } },
         };
 
-        public Task<IEnumerable<Book>> GetBooksAsync()
-        {
-            return Task<IEnumerable<Book>>.Run<IEnumerable<Book>>(() =>
-            {
-                return _books;
-            });
-        }
+        public Task<IEnumerable<Book>> GetBooksAsync() =>
+            Task.FromResult<IEnumerable<Book>>(_books);
+
     }
 }

@@ -6,6 +6,7 @@
       <StackLayout>
             <Button Text="Load Books" Command="{Binding LoadBooksCommand, Mode=OneTime}" />
             <Button Text="Add Book" Command="{Binding AddBookCommand, Mode=OneTime}" />
+            <Button Text="Show Message" Command="{Binding ShowMessageCommand, Mode=OneTime}" />
             <ListView ItemsSource="{Binding Books, Mode=OneWay}" 
                       SelectionMode="Single"
                       SelectedItem="{Binding SelectedBook, Mode=TwoWay}"/>

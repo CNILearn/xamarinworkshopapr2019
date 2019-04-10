@@ -16,7 +16,7 @@ namespace XamarinFormsBooksSample.Views
         public BooksView()
         {
             InitializeComponent();
-            ViewModel = new BooksViewModel();
+            ViewModel = AppServices.GetInstance().Container.GetService<BooksViewModel>();
             this.BindingContext = ViewModel;
         }
 

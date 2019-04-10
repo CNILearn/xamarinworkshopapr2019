@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Microsoft.Extensions.DependencyInjection;
+using XamarinFormsBooksSample.LocalServices;
 
 namespace XamarinFormsBooksSample
 {
@@ -19,6 +21,8 @@ namespace XamarinFormsBooksSample
         public MainPage()
         {
             InitializeComponent();
+            var pageService = AppServices.GetInstance().Container.GetService<IPageService>();
+            pageService.Page = this;
         }
 
 

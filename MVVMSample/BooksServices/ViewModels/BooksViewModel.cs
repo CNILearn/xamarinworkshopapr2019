@@ -11,21 +11,31 @@ namespace BooksServices.ViewModels
 {
     public class BooksViewModel : ViewModelBase
     {
-        private BooksService _booksService;
-        private ObservableCollection<Book> _books = new ObservableCollection<Book>();
+        private readonly IBooksService _booksService;
+        private readonly ObservableCollection<Book> _books = new ObservableCollection<Book>();
+        private readonly IShowMessageService _messageService;
 
         private bool _booksLoaded = false;
 
-        public BooksViewModel()
+        public BooksViewModel(IBooksService booksService,
+            IShowMessageService messageService)
         {
-            _booksService = new BooksService();
+            _booksService = booksService ?? throw new ArgumentNullException(nameof(booksService));
+            _messageService = messageService ?? throw new ArgumentNullException(nameof(messageService));
 
             LoadBooksCommand = new DelegateCommand(LoadBooks);
             AddBookCommand = new DelegateCommand(AddBook, CanAddBook);
+            ShowMessageCommand = new DelegateCommand(ShowMessage);
         }
 
         public DelegateCommand LoadBooksCommand { get; }
         public DelegateCommand AddBookCommand { get; }
+        public DelegateCommand ShowMessageCommand { get; }
+
+        public void ShowMessage()
+        {
+            _messageService.ShowMessageAsync("Hello from the View-Model");
+        }
 
         private async void LoadBooks()
         {
