@@ -1,4 +1,7 @@
-﻿namespace BooksServices
+﻿using System.ComponentModel;
+using TheBestMVVMLibraryInTown;
+
+namespace BooksServices.Models
 {
     public class Book : BindableBase
     {
@@ -21,6 +24,6 @@
 
         public string[] Authors { get; set; }
 
-       //  public override string ToString() => Title;
+        public override string ToString() => Title;
     }
 }

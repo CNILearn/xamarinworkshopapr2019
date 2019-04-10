@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinFormsBooksSample.Views.BooksView">
+  <ContentView.Content>
+      <StackLayout>
+            <Button Text="Load Books" Command="{Binding LoadBooksCommand, Mode=OneTime}" />
+            <Button Text="Add Book" Command="{Binding AddBookCommand, Mode=OneTime}" />
+            <ListView ItemsSource="{Binding Books, Mode=OneWay}" 
+                      SelectionMode="Single"
+                      SelectedItem="{Binding SelectedBook, Mode=TwoWay}"/>
+
+
+            <Label Text="{Binding SelectedBook.Title, Mode=OneWay, TargetNullValue='init'}" />
+            <Label Text="Some Label" />
+
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>

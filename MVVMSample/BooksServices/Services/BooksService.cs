@@ -1,10 +1,12 @@
-﻿using System;
+﻿using BooksServices.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace BooksServices
+namespace BooksServices.Services
 {
-    public class BookFactory
+    public class BooksService
     {
         private List<Book> _books = new List<Book>()
         {
@@ -13,6 +15,12 @@ namespace BooksServices
             new Book { BookId = 3, Title = "Enterprise Services", Publisher = "AWL", Authors = new [] { "Christian Nagel" } },
         };
 
-        public IEnumerable<Book> GetBooks() => _books;
+        public Task<IEnumerable<Book>> GetBooksAsync()
+        {
+            return Task<IEnumerable<Book>>.Run<IEnumerable<Book>>(() =>
+            {
+                return _books;
+            });
+        }
     }
 }
