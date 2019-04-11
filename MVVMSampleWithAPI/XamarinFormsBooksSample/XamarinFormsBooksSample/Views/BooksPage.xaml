@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:XamarinFormsBooksSample.Views"
+             x:DataType="views:BooksPage"
+             x:Class="XamarinFormsBooksSample.Views.BooksPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Refresh" Command="{Binding ViewModel.RefreshCommand, Mode=OneTime}" />
+        <ToolbarItem Text="Add Book" Command="{Binding ViewModel.AddBookCommand, Mode=OneTime}" />
+        <ToolbarItem Text="Show Message" Command="{Binding ViewModel.ShowMessageCommand, Mode=OneTime}" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView ItemsSource="{Binding ViewModel.Books, Mode=OneWay}" 
+                      SelectionMode="Single"
+                      SelectedItem="{Binding ViewModel.SelectedBook, Mode=TwoWay}"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
