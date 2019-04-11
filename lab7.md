@@ -1,12 +1,11 @@
-# Lab 6 - MVVM and DI
+# Lab 7
 
-Change the project from lab5 to use MVVM
+Change the project from lab6 
 
-1. Create a library with implementation of `INotifyPropertyChanged` and `ICommand`.
-2. In your previously created model-library, create models, services, and view-models
-3. In the Xamarin application library, create a DI container
-4. In the code-behind of the view, instantiate the view-model with the help of the DI container
-5. Display a list of books and implement commands
+1. Create a Web API project using EF Core
+2. Use the Web API from the Xamarin application
+
+[Using the HttpClientFactory](https://csharp.christiannagel.com/2018/06/05/httpclient/)
 
 
 
