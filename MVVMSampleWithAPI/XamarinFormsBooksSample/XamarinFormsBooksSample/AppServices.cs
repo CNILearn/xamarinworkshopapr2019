@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Text;
 using XamarinFormsBooksSample.LocalServices;
 using Prism.Events;
+using Microsoft.Extensions.Http;
+using Polly;
 
 namespace XamarinFormsBooksSample
 {
@@ -26,7 +28,13 @@ namespace XamarinFormsBooksSample
         {
             var services = new ServiceCollection();
             services.AddScoped<BooksViewModel>();
-            services.AddSingleton<IBooksService, BooksService>();
+            services.AddHttpClient("books", config =>
+            {
+                config.BaseAddress = new Uri("http://localhost42:49314/");
+            })
+            .AddTransientHttpErrorPolicy(policy => policy.WaitAndRetryAsync(new[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(10) }))
+            .AddTypedClient<IBooksService, APIBooksService>();
+//             services.AddSingleton<IBooksService, APIBooksService>();
             services.AddSingleton<IPageService, PageService>();
             services.AddTransient<IShowMessageService, XamarinShowMessageService>();
             services.AddSingleton<IEventAggregator, EventAggregator>();

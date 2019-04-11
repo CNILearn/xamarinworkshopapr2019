@@ -46,15 +46,22 @@ namespace BooksServices.ViewModels
 
         private async void LoadBooks()
         {
-            var books = await _booksService.GetBooksAsync();
-            _books.Clear();
-            foreach (var book in books)
+            try
             {
-                _books.Add(book);
+                var books = await _booksService.GetBooksAsync();
+                _books.Clear();
+                foreach (var book in books)
+                {
+                    _books.Add(book);
+                }
+                SelectedBook = Books.FirstOrDefault();
+                _booksLoaded = true;
+                AddBookCommand.RaiseCanExecuteChanged();
             }
-            SelectedBook = Books.FirstOrDefault();
-            _booksLoaded = true;
-            AddBookCommand.RaiseCanExecuteChanged();
+            catch (Exception ex)
+            {
+                // handling - write to log, inform user
+            }
         }
 
         private bool CanAddBook() => _booksLoaded;
