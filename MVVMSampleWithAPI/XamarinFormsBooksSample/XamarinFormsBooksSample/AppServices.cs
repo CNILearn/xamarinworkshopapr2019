@@ -30,7 +30,7 @@ namespace XamarinFormsBooksSample
             services.AddScoped<BooksViewModel>();
             services.AddHttpClient("books", config =>
             {
-                config.BaseAddress = new Uri("http://localhost42:49314/");
+                config.BaseAddress = new Uri("http://localhost:49314/");
             })
             .AddTransientHttpErrorPolicy(policy => policy.WaitAndRetryAsync(new[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(10) }))
             .AddTypedClient<IBooksService, APIBooksService>();

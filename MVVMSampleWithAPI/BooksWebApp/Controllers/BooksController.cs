@@ -27,19 +27,19 @@ namespace BooksWebApp.Controllers
             return await _context.Books.ToListAsync();
         }
 
-        // GET: api/Books/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Book>> GetBook(int id)
-        {
-            var book = await _context.Books.FindAsync(id);
+        //// GET: api/Books/5
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<Book>> GetBook(int id)
+        //{
+        //    var book = await _context.Books.FindAsync(id);
 
-            if (book == null)
-            {
-                return NotFound();
-            }
+        //    if (book == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return book;
-        }
+        //    return book;
+        //}
 
         // PUT: api/Books/5
         [HttpPut("{id}")]
